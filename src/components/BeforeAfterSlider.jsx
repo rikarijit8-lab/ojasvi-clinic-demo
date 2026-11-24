@@ -64,16 +64,16 @@ export default function BeforeAfterSlider({ onOpenBooking }) {
 
         {/* Interactive Comparison Card */}
         <div className="max-w-4xl mx-auto glass-panel rounded-3xl p-4 sm:p-8 border border-gold-500/30 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4 pb-4 border-b border-gold-500/15">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-4 pb-4 border-b border-gold-500/15">
             <div>
-              <span className="text-[11px] uppercase tracking-widest text-gold-400 font-semibold block">
+              <span className="text-[10px] sm:text-[11px] uppercase tracking-widest text-gold-400 font-semibold block">
                 {activeCase.category}
               </span>
-              <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">
+              <h3 className="font-serif text-lg sm:text-2xl font-bold text-white">
                 {activeCase.title}
               </h3>
             </div>
-            <div className="flex items-center gap-2 bg-obsidian-950/80 px-4 py-1.5 rounded-full border border-gold-500/20 text-xs font-medium text-gold-300">
+            <div className="flex items-center gap-2 bg-obsidian-950/80 px-3.5 sm:px-4 py-1.5 rounded-full border border-gold-500/20 text-xs font-medium text-gold-300 shrink-0">
               <Calendar className="w-3.5 h-3.5 text-gold-400" />
               <span>{activeCase.timeline}</span>
             </div>

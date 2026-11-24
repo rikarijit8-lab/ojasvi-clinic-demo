@@ -18,10 +18,10 @@ export default function WhatsAppConcierge() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 select-none">
+    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40 select-none">
       {/* Concierge Flyout Window */}
       {isOpen && (
-        <div className="mb-3 w-80 sm:w-96 rounded-3xl bg-obsidian-900 border border-gold-500/40 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(212,175,55,0.25)] overflow-hidden animate-fadeIn">
+        <div className="mb-3 w-[calc(100vw-2rem)] sm:w-96 max-w-sm rounded-3xl bg-obsidian-900 border border-gold-500/40 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(212,175,55,0.25)] overflow-hidden animate-fadeIn">
           {/* Top Bar */}
           <div className="p-4 bg-gradient-to-r from-obsidian-950 via-obsidian-900 to-obsidian-950 border-b border-gold-500/20 flex items-center justify-between">
             <div className="flex items-center gap-3">

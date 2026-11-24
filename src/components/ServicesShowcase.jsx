@@ -194,7 +194,7 @@ export default function ServicesShowcase({ onSelectTreatment, onOpenBooking }) {
 
             <button
               onClick={() => onOpenBooking(null)}
-              className="shrink-0 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-500 to-bronze-500 text-obsidian-950 font-bold text-xs uppercase tracking-[0.16em] hover:brightness-110 shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all flex items-center gap-2"
+              className="w-full sm:w-auto shrink-0 px-6 sm:px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-500 to-bronze-500 text-obsidian-950 font-bold text-xs uppercase tracking-[0.16em] hover:brightness-110 shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all flex items-center justify-center gap-2"
             >
               <span>Claim ₹100 Off Voucher</span>
               <ArrowRight className="w-4 h-4" />

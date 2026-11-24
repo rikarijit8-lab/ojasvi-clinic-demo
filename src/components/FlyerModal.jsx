@@ -47,7 +47,7 @@ export default function FlyerModal({ isOpen, onClose, onOpenBooking }) {
           <div className="p-4 overflow-y-auto flex items-center justify-center bg-obsidian-950/60">
             <div className="relative rounded-2xl overflow-hidden border-2 border-gold-400/50 shadow-2xl max-h-[65vh]">
               <img
-                src="/flyer.jpg"
+                src="./flyer.jpg"
                 alt="OJASVI Inaugural Offer Flyer"
                 className="w-full h-auto object-contain max-h-[65vh]"
               />

@@ -74,58 +74,54 @@ export default function Navbar({ onOpenBooking, onSelectTreatment }) {
           ))}
         </nav>
 
-        {/* Action Buttons */}
-        <div className="hidden sm:flex items-center gap-3 shrink-0">
+        {/* Action Buttons for Mobile, Tablet & Desktop */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* WhatsApp icon - visible on sm+ (tablets & desktop) */}
           <a
             href={CLINIC_INFO.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full border border-gold-500/30 bg-obsidian-900/90 hover:border-gold-400 hover:bg-gold-500/20 text-gold-400 hover:text-white flex items-center justify-center transition-all duration-300 shadow-md shrink-0"
+            className="hidden sm:flex w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gold-500/30 bg-obsidian-900/90 hover:border-gold-400 hover:bg-gold-500/20 text-gold-400 hover:text-white items-center justify-center transition-all duration-300 shadow-md shrink-0"
             title="Chat on WhatsApp"
           >
             <MessageCircle className="w-4 h-4 text-emerald-400" />
           </a>
 
+          {/* Book Consultation button */}
           <button
             onClick={() => onOpenBooking(null)}
-            className="relative group overflow-hidden px-5 py-2.5 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-bronze-500 text-obsidian-950 font-bold text-xs tracking-wider uppercase shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:shadow-[0_0_35px_rgba(212,175,55,0.7)] hover:brightness-110 transition-all duration-300 active:scale-95 flex items-center gap-2 shrink-0"
+            className="relative group overflow-hidden px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-bronze-500 text-obsidian-950 font-bold text-[11px] sm:text-xs tracking-wider uppercase shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.7)] hover:brightness-110 transition-all duration-300 active:scale-95 flex items-center gap-1.5 shrink-0"
           >
             <span className="absolute inset-0 bg-white/25 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out" />
             <Calendar className="w-3.5 h-3.5 text-obsidian-950" />
-            <span className="whitespace-nowrap">Book Consultation</span>
+            <span className="hidden sm:inline whitespace-nowrap">Book Consultation</span>
+            <span className="sm:hidden inline whitespace-nowrap">Book</span>
           </button>
-        </div>
 
-        {/* Mobile Menu Toggle */}
-        <div className="flex sm:hidden items-center gap-2">
-          <button
-            onClick={() => onOpenBooking(null)}
-            className="px-3 py-1.5 rounded-full bg-gold-500 text-obsidian-950 text-[11px] font-bold uppercase tracking-wider"
-          >
-            Book
-          </button>
+          {/* Mobile & Tablet Hamburger Toggle (visible on screens < xl) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg text-ivory-200 hover:text-gold-400 focus:outline-none"
+            className="xl:hidden p-2 rounded-xl text-ivory-200 hover:text-gold-400 hover:bg-gold-500/10 focus:outline-none transition-colors border border-gold-500/20"
             aria-label="Toggle Navigation"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-gold-400" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile & Tablet Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-obsidian-900/95 backdrop-blur-xl border-b border-gold-500/20 px-6 py-6 animate-fadeIn">
+        <div className="xl:hidden bg-obsidian-950/95 backdrop-blur-2xl border-b border-gold-500/25 px-6 py-6 shadow-2xl animate-fadeIn">
           <div className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-sm font-medium tracking-wider text-ivory-100 hover:text-gold-400 py-1 border-b border-gold-500/10"
+                className="text-sm font-medium tracking-wider text-ivory-100 hover:text-gold-400 py-1.5 border-b border-gold-500/10 flex items-center justify-between"
               >
-                {link.name}
+                <span>{link.name}</span>
+                <span className="text-gold-400 text-xs">›</span>
               </a>
             ))}
             <div className="pt-4 flex flex-col gap-3">
@@ -134,7 +130,7 @@ export default function Navbar({ onOpenBooking, onSelectTreatment }) {
                   setMobileMenuOpen(false);
                   onOpenBooking(null);
                 }}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-bronze-500 text-obsidian-950 font-bold text-xs uppercase tracking-wider text-center"
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-bronze-500 text-obsidian-950 font-bold text-xs uppercase tracking-wider text-center shadow-lg active:scale-95"
               >
                 Book Appointment Today
               </button>
@@ -142,10 +138,10 @@ export default function Navbar({ onOpenBooking, onSelectTreatment }) {
                 href={CLINIC_INFO.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 rounded-xl border border-gold-500/40 text-gold-300 font-medium text-xs tracking-wider text-center flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl border border-gold-500/40 text-gold-300 font-medium text-xs tracking-wider text-center flex items-center justify-center gap-2 bg-obsidian-900/60"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-400" />
-                WhatsApp Us (+91 9187969614)
+                WhatsApp Clinic (+91 9187969614)
               </a>
             </div>
           </div>
