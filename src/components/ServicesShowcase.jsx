@@ -70,6 +70,10 @@ export default function ServicesShowcase({ onSelectTreatment, onOpenBooking }) {
                 <img
                   src={treatment.image}
                   alt={treatment.name}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = './flyer.jpg';
+                  }}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-95"
                 />
                 

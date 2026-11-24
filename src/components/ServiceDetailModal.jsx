@@ -30,6 +30,10 @@ export default function ServiceDetailModal({ treatment, onClose, onBook }) {
             <img
               src={treatment.image}
               alt={treatment.name}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = './flyer.jpg';
+              }}
               className="w-full h-full object-cover brightness-90"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-obsidian-900 via-obsidian-900/60 to-transparent" />
