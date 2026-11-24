@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>OJASVI Derma Clinic - Android Mobile App Demo</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN for instant standalone rendering -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              400: '#E2BD68',
+              500: '#D4AF37',
+              600: '#B89225',
+            },
+            bronze: {
+              500: '#8C583A',
+              600: '#75472E',
+            },
+            obsidian: {
+              DEFAULT: '#1A1614',
+              900: '#151210',
+              950: '#0E0C0B',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar for App Frame */
+    .app-screen::-webkit-scrollbar {
+      display: none;
+    }
+    .app-screen {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    @keyframes scanLine {
+      0% { top: 10%; opacity: 0.8; }
+      50% { top: 85%; opacity: 1; }
+      100% { top: 10%; opacity: 0.8; }
+    }
+    .scan-laser {
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #D4AF37, #FFF, #D4AF37, transparent);
+      box-shadow: 0 0 15px #D4AF37;
+      animation: scanLine 2.5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-neutral-950 text-white font-sans min-h-screen flex flex-col items-center justify-center p-2 sm:p-6 select-none">
+
+  <!-- Top Navigation Ribbon for Web Previewers -->
+  <div class="w-full max-w-md flex items-center justify-between mb-4 px-2 text-xs">
+    <a href="./" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-neutral-900 border border-gold-500/30 text-gold-400 hover:text-white hover:border-gold-400 transition-all">
+      <span>← Back to Website</span>
+    </a>
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="text-neutral-400 font-medium">Android APK v2.4 (Live Demo)</span>
+    </div>
+  </div>
+
+  <!-- Android Phone Device Mockup Container -->
+  <div class="relative w-full max-w-[395px] h-[812px] bg-obsidian-950 rounded-[48px] p-3 shadow-[0_0_60px_rgba(212,175,55,0.25),0_25px_50px_rgba(0,0,0,0.9)] border-4 border-neutral-800 ring-1 ring-gold-500/30 flex flex-col overflow-hidden">
+    
+    <!-- Phone Top Speaker & Punch Hole Camera -->
+    <div class="absolute top-4 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center gap-3 pointer-events-none">
+      <div class="w-12 h-1 bg-neutral-700 rounded-full"></div>
+      <div class="w-3.5 h-3.5 rounded-full bg-neutral-900 border border-neutral-700 flex items-center justify-center">
+        <div class="w-1.5 h-1.5 rounded-full bg-neutral-800"></div>
+      </div>
+    </div>
+
+    <!-- Android Status Bar -->
+    <div class="h-9 w-full flex items-center justify-between px-6 pt-2 text-[11px] font-semibold text-neutral-400 shrink-0 z-40 bg-obsidian-950">
+      <span id="current-time">10:45</span>
+      <div class="flex items-center gap-2">
+        <span>5G</span>
+        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/></svg>
+        <span class="text-[10px]">98%</span>
+      </div>
+    </div>
+
+    <!-- Scrollable Screen Content Body -->
+    <div id="screen-container" class="app-screen flex-1 overflow-y-auto px-4 pb-20 pt-1">
+      
+      <!-- TAB 1: HOME SCREEN -->
+      <div id="tab-home" class="space-y-4">
+        
+        <!-- App Header with Profile & Location -->
+        <div class="flex items-center justify-between pt-1">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-gold-500 to-bronze-600 p-[1.5px]">
+              <div class="w-full h-full rounded-full bg-obsidian-900 flex items-center justify-center text-gold-400 font-bold text-xs">
+                OJ
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-1 text-[11px] text-neutral-400">
+                <span>📍 VIP Road Clinic</span>
+                <span class="text-gold-400">▼</span>
+              </div>
+              <h2 class="text-sm font-bold text-white font-serif">OJASVI Derma</h2>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <a href="tel:+919187969614" class="p-2 rounded-full bg-neutral-900 border border-gold-500/20 text-gold-400 hover:text-white">
+              <svg class="w-4 h-4 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </a>
+            <button onclick="switchTab('pass')" class="p-2 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-400 relative">
+              <svg class="w-4 h-4 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span class="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-gold-400"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Inaugural Special Hero Banner -->
+        <div class="relative overflow-hidden rounded-3xl p-4 bg-gradient-to-br from-obsidian-900 via-neutral-900 to-obsidian-950 border border-gold-500/40 shadow-lg">
+          <div class="absolute -right-6 -bottom-6 w-28 h-28 rounded-full bg-gold-500/10 blur-xl"></div>
+          
+          <div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-gold-500/20 border border-gold-400/30 w-max text-[10px] font-bold text-gold-300 uppercase tracking-wider mb-2">
+            <span>✨ Inaugural Launch Offer</span>
+          </div>
+          
+          <h3 class="text-xl font-bold font-serif text-white leading-tight">
+            Upto <span class="text-gold-400 text-2xl">40% OFF</span> on Advanced Treatments
+          </h3>
+          <p class="text-[11px] text-neutral-300 mt-1">
+            Celebrating new beginnings with beautiful you.
+          </p>
+
+          <div class="mt-3 pt-2.5 border-t border-neutral-800 flex items-center justify-between">
+            <div class="flex items-center gap-1.5 text-xs text-gold-300 font-semibold">
+              <span>Flat ₹100 OFF Doctor Fee</span>
+            </div>
+            <button onclick="openBooking('Inaugural Special')" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-gold-500 to-bronze-600 text-obsidian-950 font-bold text-[11px] uppercase tracking-wider active:scale-95 transition-all">
+              Claim Now
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Quick Action Circles -->
+        <div class="grid grid-cols-4 gap-2 text-center">
+          <div onclick="openBooking('Doctor Consultation')" class="cursor-pointer group flex flex-col items-center">
+            <div class="w-12 h-12 rounded-2xl bg-neutral-900 border border-gold-500/25 flex items-center justify-center text-gold-400 group-hover:scale-105 transition-all shadow-md">
+              🩺
+            </div>
+            <span class="text-[10px] text-neutral-300 font-medium mt-1.5">Consult</span>
+          </div>
+
+          <div onclick="switchTab('scan')" class="cursor-pointer group flex flex-col items-center">
+            <div class="w-12 h-12 rounded-2xl bg-neutral-900 border border-gold-500/25 flex items-center justify-center text-gold-400 group-hover:scale-105 transition-all shadow-md">
+              🔬
+            </div>
+            <span class="text-[10px] text-neutral-300 font-medium mt-1.5">AI Scan</span>
+          </div>
+
+          <div onclick="switchTab('pass')" class="cursor-pointer group flex flex-col items-center">
+            <div class="w-12 h-12 rounded-2xl bg-neutral-900 border border-gold-500/25 flex items-center justify-center text-gold-400 group-hover:scale-105 transition-all shadow-md">
+              🎟️
+            </div>
+            <span class="text-[10px] text-neutral-300 font-medium mt-1.5">VIP Pass</span>
+          </div>
+
+          <a href="https://wa.me/919187969614?text=Hello%20OJASVI%20Clinic%2C%20I%20am%20using%20the%20Android%20App" target="_blank" class="group flex flex-col items-center">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-950/60 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-all shadow-md">
+              💬
+            </div>
+            <span class="text-[10px] text-neutral-300 font-medium mt-1.5">WhatsApp</span>
+          </a>
+        </div>
+
+        <!-- Featured Treatments Strip -->
+        <div class="space-y-2.5 pt-2">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-300">Popular Procedures</h4>
+            <span class="text-[10px] text-gold-400 font-semibold">40% OFF APPLIED</span>
+          </div>
+
+          <!-- Card 1: Chemical Peels -->
+          <div class="p-3 rounded-2xl bg-neutral-900/90 border border-neutral-800 hover:border-gold-500/30 flex items-center justify-between gap-3 transition-all">
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=200&q=80" class="w-14 h-14 rounded-xl object-cover" />
+            <div class="flex-1">
+              <h5 class="text-xs font-bold text-white">Chemical Peels</h5>
+              <p class="text-[10px] text-neutral-400 line-clamp-1">Exfoliates & renews skin complexion</p>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span class="text-xs font-bold text-gold-400">₹2,100</span>
+                <span class="text-[10px] text-neutral-500 line-through">₹3,500</span>
+              </div>
+            </div>
+            <button onclick="openBooking('Chemical Peels')" class="px-2.5 py-1.5 rounded-lg bg-gold-500/20 text-gold-300 text-[10px] font-bold uppercase tracking-wider border border-gold-500/30 active:scale-95">
+              Book
+            </button>
+          </div>
+
+          <!-- Card 2: Hydrafacial MD -->
+          <div class="p-3 rounded-2xl bg-neutral-900/90 border border-neutral-800 hover:border-gold-500/30 flex items-center justify-between gap-3 transition-all">
+            <img src="https://images.unsplash.com/photo-1512290900672-1f02a647038e?auto=format&fit=crop&w=200&q=80" class="w-14 h-14 rounded-xl object-cover" />
+            <div class="flex-1">
+              <h5 class="text-xs font-bold text-white">Hydrafacial MD</h5>
+              <p class="text-[10px] text-neutral-400 line-clamp-1">Deep cleanses & instant glowing skin</p>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span class="text-xs font-bold text-gold-400">₹3,000</span>
+                <span class="text-[10px] text-neutral-500 line-through">₹5,000</span>
+              </div>
+            </div>
+            <button onclick="openBooking('Hydrafacial MD')" class="px-2.5 py-1.5 rounded-lg bg-gold-500/20 text-gold-300 text-[10px] font-bold uppercase tracking-wider border border-gold-500/30 active:scale-95">
+              Book
+            </button>
+          </div>
+
+          <!-- Card 3: GFC Hair Therapy -->
+          <div class="p-3 rounded-2xl bg-neutral-900/90 border border-neutral-800 hover:border-gold-500/30 flex items-center justify-between gap-3 transition-all">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=200&q=80" class="w-14 h-14 rounded-xl object-cover" />
+            <div class="flex-1">
+              <h5 class="text-xs font-bold text-white">GFC Hair Therapy</h5>
+              <p class="text-[10px] text-neutral-400 line-clamp-1">Acellular growth factors for hair density</p>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span class="text-xs font-bold text-gold-400">₹4,800</span>
+                <span class="text-[10px] text-neutral-500 line-through">₹8,000</span>
+              </div>
+            </div>
+            <button onclick="openBooking('GFC Hair Restoration')" class="px-2.5 py-1.5 rounded-lg bg-gold-500/20 text-gold-300 text-[10px] font-bold uppercase tracking-wider border border-gold-500/30 active:scale-95">
+              Book
+            </button>
+          </div>
+
+          <!-- Card 4: Laser Hair Reduction -->
+          <div class="p-3 rounded-2xl bg-neutral-900/90 border border-neutral-800 hover:border-gold-500/30 flex items-center justify-between gap-3 transition-all">
+            <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?auto=format&fit=crop&w=200&q=80" class="w-14 h-14 rounded-xl object-cover" />
+            <div class="flex-1">
+              <h5 class="text-xs font-bold text-white">Diode Laser</h5>
+              <p class="text-[10px] text-neutral-400 line-clamp-1">Triple-wavelength pain-free cooling</p>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span class="text-xs font-bold text-gold-400">₹3,600</span>
+                <span class="text-[10px] text-neutral-500 line-through">₹6,000</span>
+              </div>
+            </div>
+            <button onclick="openBooking('Laser Hair Reduction')" class="px-2.5 py-1.5 rounded-lg bg-gold-500/20 text-gold-300 text-[10px] font-bold uppercase tracking-wider border border-gold-500/30 active:scale-95">
+              Book
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 2: AI SCANNER SCREEN -->
+      <div id="tab-scan" class="space-y-4 hidden">
+        <div class="text-center pt-2">
+          <span class="text-[10px] uppercase font-bold tracking-widest text-gold-400">OJASVI AI DERMA-VISION</span>
+          <h3 class="font-serif text-lg font-bold text-white">Smart Skin & Scalp Diagnostic</h3>
+        </div>
+
+        <!-- Simulated Camera Viewfinder -->
+        <div class="relative w-full h-72 rounded-3xl bg-neutral-900 border-2 border-gold-500/40 overflow-hidden flex flex-col items-center justify-center shadow-inner">
+          <img id="scan-subject" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover opacity-70" />
+          
+          <!-- Laser animation line -->
+          <div id="scan-laser" class="scan-laser hidden"></div>
+
+          <!-- Bounding Reticle -->
+          <div class="absolute inset-8 border border-dashed border-gold-400/60 rounded-2xl pointer-events-none flex items-center justify-center">
+            <span id="scan-status-text" class="text-[10px] uppercase tracking-wider text-gold-300 font-bold bg-obsidian-950/80 px-2 py-1 rounded">
+              Position Face in Frame
+            </span>
+          </div>
+        </div>
+
+        <button id="btn-start-scan" onclick="runAiScan()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-500 to-bronze-600 text-obsidian-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all">
+          <span>⚡ Start AI Skin Analysis</span>
+        </button>
+
+        <!-- Diagnostic Report Container (Revealed after scan) -->
+        <div id="scan-results" class="p-3.5 rounded-2xl bg-neutral-900 border border-gold-500/30 text-xs space-y-2 hidden">
+          <div class="flex items-center justify-between border-b border-neutral-800 pb-2">
+            <span class="font-bold text-gold-300">Diagnostic Assessment:</span>
+            <span class="text-[10px] text-emerald-400 font-semibold">98.4% Accuracy</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="bg-obsidian-950 p-2 rounded-lg">
+              <span class="text-neutral-400 block text-[10px]">Hydration Level</span>
+              <span class="font-bold text-white">88% (Good)</span>
+            </div>
+            <div class="bg-obsidian-950 p-2 rounded-lg">
+              <span class="text-neutral-400 block text-[10px]">Sebum Balance</span>
+              <span class="font-bold text-white">Mild T-Zone Shine</span>
+            </div>
+          </div>
+          <p class="text-[10px] text-neutral-300 leading-snug pt-1">
+            <strong class="text-gold-400">Recommended Protocol:</strong> Hydrafacial MD vortex exfoliation combined with mild lactic brightening peel.
+          </p>
+          <button onclick="openBooking('Hydrafacial MD + Peel Combo')" class="w-full py-2 rounded-xl bg-gold-500 text-obsidian-950 font-bold text-[11px] uppercase tracking-wider mt-1">
+            Book Recommended Plan
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 3: VIP PASS WALLET -->
+      <div id="tab-pass" class="space-y-4 hidden">
+        <div class="text-center pt-2">
+          <span class="text-[10px] uppercase font-bold tracking-widest text-gold-400">DIGITAL RECEPTION PASS</span>
+          <h3 class="font-serif text-lg font-bold text-white">Ojasvi Inaugural Pass</h3>
+        </div>
+
+        <div class="rounded-3xl p-5 bg-gradient-to-b from-obsidian-900 to-obsidian-950 border-2 border-gold-500/40 shadow-2xl relative">
+          <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-wider text-gold-400">VIP MEMBER TICKET</span>
+              <h4 class="font-serif font-bold text-white text-base">OJASVI CLINIC</h4>
+            </div>
+            <span class="text-xs font-mono font-bold text-gold-300">#OJS-9842</span>
+          </div>
+
+          <div class="space-y-2 py-3 text-xs">
+            <div class="flex justify-between">
+              <span class="text-neutral-400">Offer 1:</span>
+              <span class="font-bold text-gold-400">UPTO 40% OFF Treatments</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-neutral-400">Offer 2:</span>
+              <span class="font-bold text-emerald-400">FLAT ₹100 OFF Consultation</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-neutral-400">Validity:</span>
+              <span class="text-white">Active (Inaugural Month)</span>
+            </div>
+          </div>
+
+          <!-- Stylized Barcode Graphic -->
+          <div class="border-t border-dashed border-neutral-700 pt-3 flex flex-col items-center">
+            <div class="h-10 w-44 bg-neutral-200 rounded flex items-center justify-around px-2 py-1">
+              <div class="w-1 h-full bg-black"></div>
+              <div class="w-2 h-full bg-black"></div>
+              <div class="w-0.5 h-full bg-black"></div>
+              <div class="w-3 h-full bg-black"></div>
+              <div class="w-1 h-full bg-black"></div>
+              <div class="w-2 h-full bg-black"></div>
+              <div class="w-0.5 h-full bg-black"></div>
+              <div class="w-1.5 h-full bg-black"></div>
+              <div class="w-2 h-full bg-black"></div>
+            </div>
+            <span class="text-[9px] font-mono text-neutral-400 mt-1">SHOW AT CLINIC DESK TO CLAIM</span>
+          </div>
+        </div>
+
+        <button onclick="openBooking('VIP Pass Claim')" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-500 to-bronze-600 text-obsidian-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all">
+          <span>📅 Schedule Visit With This Pass</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Booking Modal Inside App -->
+    <div id="app-modal" class="absolute inset-0 bg-obsidian-950/95 p-5 z-50 flex flex-col justify-between hidden">
+      <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
+        <h4 class="font-serif font-bold text-white text-base">Quick Appointment</h4>
+        <button onclick="closeBooking()" class="text-neutral-400 hover:text-white text-lg">✕</button>
+      </div>
+
+      <div class="space-y-3 py-2 text-xs">
+        <div>
+          <label class="text-[10px] uppercase font-bold text-neutral-400 block mb-1">Selected Treatment</label>
+          <input id="modal-treatment-input" type="text" readonly class="w-full bg-neutral-900 border border-neutral-800 rounded-xl p-2.5 text-gold-300 font-semibold" />
+        </div>
+
+        <div>
+          <label class="text-[10px] uppercase font-bold text-neutral-400 block mb-1">Your Full Name</label>
+          <input id="modal-name-input" type="text" placeholder="e.g. Priyadarshini Sen" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl p-2.5 text-white" />
+        </div>
+
+        <div>
+          <label class="text-[10px] uppercase font-bold text-neutral-400 block mb-1">Phone Number (WhatsApp)</label>
+          <input id="modal-phone-input" type="tel" placeholder="+91 9187969614" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl p-2.5 text-white" />
+        </div>
+
+        <div>
+          <label class="text-[10px] uppercase font-bold text-neutral-400 block mb-1">Preferred Time</label>
+          <select class="w-full bg-neutral-900 border border-neutral-800 rounded-xl p-2.5 text-white">
+            <option>11:00 AM (Morning Slot)</option>
+            <option>02:30 PM (Afternoon Slot)</option>
+            <option>05:30 PM (Evening Slot)</option>
+            <option>07:00 PM (Post-Work Slot)</option>
+          </select>
+        </div>
+      </div>
+
+      <button onclick="confirmAppBooking()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-500 to-bronze-600 text-obsidian-950 font-bold text-xs uppercase tracking-wider">
+        Confirm & Send on WhatsApp
+      </button>
+    </div>
+
+    <!-- Android Bottom Navigation Bar -->
+    <div class="h-16 w-full bg-obsidian-900/95 border-t border-neutral-800 px-6 flex items-center justify-between shrink-0 absolute bottom-0 left-0 right-0 z-40 rounded-b-[44px]">
+      <button onclick="switchTab('home')" id="nav-home" class="flex flex-col items-center text-gold-400">
+        <span class="text-lg">🏠</span>
+        <span class="text-[9px] font-semibold mt-0.5">Home</span>
+      </button>
+
+      <button onclick="switchTab('scan')" id="nav-scan" class="flex flex-col items-center text-neutral-400">
+        <span class="text-lg">🔬</span>
+        <span class="text-[9px] font-semibold mt-0.5">AI Scan</span>
+      </button>
+
+      <button onclick="switchTab('pass')" id="nav-pass" class="flex flex-col items-center text-neutral-400">
+        <span class="text-lg">🎟️</span>
+        <span class="text-[9px] font-semibold mt-0.5">VIP Pass</span>
+      </button>
+
+      <button onclick="openBooking('General Consultation')" class="flex flex-col items-center text-neutral-400">
+        <span class="text-lg">📅</span>
+        <span class="text-[9px] font-semibold mt-0.5">Book</span>
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    // Live Clock
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      document.getElementById('current-time').innerText = hours + ':' + minutes;
+    }
+    updateClock();
+    setInterval(updateClock, 30000);
+
+    // Tab Switcher
+    function switchTab(tab) {
+      document.getElementById('tab-home').classList.add('hidden');
+      document.getElementById('tab-scan').classList.add('hidden');
+      document.getElementById('tab-pass').classList.add('hidden');
+
+      document.getElementById('nav-home').classList.replace('text-gold-400', 'text-neutral-400');
+      document.getElementById('nav-scan').classList.replace('text-gold-400', 'text-neutral-400');
+      document.getElementById('nav-pass').classList.replace('text-gold-400', 'text-neutral-400');
+
+      if (tab === 'home') {
+        document.getElementById('tab-home').classList.remove('hidden');
+        document.getElementById('nav-home').classList.replace('text-neutral-400', 'text-gold-400');
+      } else if (tab === 'scan') {
+        document.getElementById('tab-scan').classList.remove('hidden');
+        document.getElementById('nav-scan').classList.replace('text-neutral-400', 'text-gold-400');
+      } else if (tab === 'pass') {
+        document.getElementById('tab-pass').classList.remove('hidden');
+        document.getElementById('nav-pass').classList.replace('text-neutral-400', 'text-gold-400');
+      }
+    }
+
+    // AI Scanner Simulation
+    function runAiScan() {
+      const laser = document.getElementById('scan-laser');
+      const statusText = document.getElementById('scan-status-text');
+      const btn = document.getElementById('btn-start-scan');
+      const results = document.getElementById('scan-results');
+
+      laser.classList.remove('hidden');
+      statusText.innerText = "Scanning Dermal Layers...";
+      btn.disabled = true;
+      btn.innerText = "Analyzing Melanin & Follicles...";
+
+      setTimeout(() => {
+        laser.classList.add('hidden');
+        statusText.innerText = "Analysis Complete ✓";
+        btn.disabled = false;
+        btn.innerText = "⚡ Re-scan Diagnostics";
+        results.classList.remove('hidden');
+      }, 2500);
+    }
+
+    // Booking Handlers
+    function openBooking(treatmentName) {
+      document.getElementById('modal-treatment-input').value = treatmentName || "Doctor Consultation";
+      document.getElementById('app-modal').classList.remove('hidden');
+    }
+
+    function closeBooking() {
+      document.getElementById('app-modal').classList.add('hidden');
+    }
+
+    function confirmAppBooking() {
+      const treatment = document.getElementById('modal-treatment-input').value;
+      const name = document.getElementById('modal-name-input').value || "Client";
+      const phone = document.getElementById('modal-phone-input').value || "+91 9187969614";
+      
+      const msg = encodeURIComponent(`*OJASVI ANDROID APP BOOKING*%0A%0A` +
+        `*Name:* ${name}%0A` +
+        `*Phone:* ${phone}%0A` +
+        `*Treatment:* ${treatment}%0A` +
+        `*Offer Applied:* Inaugural 40% OFF / Flat ₹100 Off%0A%0A` +
+        `Please confirm my slot. Thank you!`);
+      
+      window.open(`https://wa.me/919187969614?text=${msg}`, '_blank');
+      closeBooking();
+    }
+  </script>
+</body>
+</html>
