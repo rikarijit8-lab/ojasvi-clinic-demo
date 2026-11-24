@@ -8,7 +8,6 @@ import BeforeAfterSlider from './components/BeforeAfterSlider';
 import DoctorCredentials from './components/DoctorCredentials';
 import InstagramFeed from './components/InstagramFeed';
 import FAQSection from './components/FAQSection';
-import AppShowcase from './components/AppShowcase';
 import Footer from './components/Footer';
 import AppointmentModal from './components/AppointmentModal';
 import ServiceDetailModal from './components/ServiceDetailModal';
@@ -78,9 +77,6 @@ export default function App() {
 
         {/* Frequently Asked Questions */}
         <FAQSection />
-
-        {/* Dedicated Android Mobile App Showcase Section */}
-        <AppShowcase />
       </main>
 
       {/* Luxury Footer */}
