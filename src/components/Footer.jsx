@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from './Logo';
-import { Phone, MapPin, Clock, MessageCircle, ShieldCheck, ArrowUp } from 'lucide-react';
+import { Phone, MapPin, Clock, MessageCircle, ShieldCheck, ArrowUp, Smartphone } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 import { CLINIC_INFO } from '../data/treatments';
 
@@ -136,12 +136,23 @@ export default function Footer({ onOpenBooking }) {
               </p>
             </div>
 
-            <button
-              onClick={() => onOpenBooking(null)}
-              className="mt-4 w-full py-2.5 rounded-xl bg-gradient-to-r from-gold-500 to-bronze-500 text-obsidian-950 font-bold text-xs uppercase tracking-wider hover:brightness-110 transition-all text-center"
-            >
-              Claim Your Pass Now
-            </button>
+            <div className="mt-4 space-y-2">
+              <button
+                onClick={() => onOpenBooking(null)}
+                className="w-full py-2.5 rounded-xl bg-gradient-to-r from-gold-500 to-bronze-500 text-obsidian-950 font-bold text-xs uppercase tracking-wider hover:brightness-110 transition-all text-center shadow-md active:scale-95"
+              >
+                Claim Your Pass Now
+              </button>
+
+              <a
+                href="./app.html"
+                className="w-full py-2.5 rounded-xl border border-gold-400/50 bg-gradient-to-r from-gold-500/15 via-gold-400/20 to-bronze-500/15 hover:bg-gold-500/30 hover:border-gold-300 text-gold-200 hover:text-white font-bold text-xs uppercase tracking-wider transition-all text-center flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(212,175,55,0.25)] hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] active:scale-95"
+                title="Launch Android App Demo"
+              >
+                <Smartphone className="w-3.5 h-3.5 text-gold-400" />
+                <span>Launch Android App Demo</span>
+              </a>
+            </div>
           </div>
 
         </div>
@@ -153,6 +164,13 @@ export default function Footer({ onOpenBooking }) {
           </p>
 
           <div className="flex items-center gap-6">
+            <a
+              href="./app.html"
+              className="hidden sm:inline-flex items-center gap-1.5 text-gold-300 hover:text-white transition-colors font-medium"
+            >
+              <Smartphone className="w-3.5 h-3.5 text-gold-400" />
+              <span>Android App Demo</span>
+            </a>
             <span className="flex items-center gap-1.5 text-gold-400/80">
               <ShieldCheck className="w-4 h-4" />
               US-FDA & ISO Clinical Standards
