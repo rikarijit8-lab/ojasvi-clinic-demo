@@ -17,9 +17,10 @@ export default function Navbar({ onOpenBooking, onSelectTreatment }) {
 
   const navLinks = [
     { name: "Services", href: "#services" },
-    { name: "Inaugural Offers", href: "#offers" },
+    { name: "Offers", href: "#offers" },
     { name: "Results", href: "#results" },
-    { name: "Why Ojasvi", href: "#why-us" },
+    { name: "Why Us", href: "#why-us" },
+    { name: "App Demo", href: "./app.html" },
     { name: "Clinic", href: "#instagram" },
     { name: "FAQ", href: "#faq" }
   ];
@@ -27,12 +28,12 @@ export default function Navbar({ onOpenBooking, onSelectTreatment }) {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       scrolled 
-        ? "bg-obsidian-950/85 backdrop-blur-md border-b border-gold-500/20 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.8)]" 
-        : "bg-transparent py-5"
+        ? "bg-obsidian-950/90 backdrop-blur-2xl border-b border-gold-500/25 py-2.5 shadow-[0_12px_40px_rgba(0,0,0,0.85)]" 
+        : "bg-obsidian-950/60 backdrop-blur-md py-4 border-b border-gold-500/10"
     }`}>
       {/* Top micro-announcement banner on larger screens */}
-      <div className={`transition-all duration-300 overflow-hidden ${scrolled ? 'max-h-0 opacity-0' : 'max-h-10 opacity-100 mb-3 border-b border-gold-500/15'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between text-xs text-ivory-200/90">
+      <div className={`transition-all duration-300 overflow-hidden ${scrolled ? 'max-h-0 opacity-0' : 'max-h-10 opacity-100 mb-2.5 border-b border-gold-500/15'}`}>
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 flex items-center justify-between text-xs text-ivory-200/90">
           <div className="flex items-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-gold-400 animate-ping" />
             <span className="font-medium tracking-wider uppercase text-[11px] text-gold-300">
@@ -54,19 +55,19 @@ export default function Navbar({ onOpenBooking, onSelectTreatment }) {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 flex items-center justify-between gap-4">
         {/* Brand Logo */}
-        <a href="#" className="flex items-center">
+        <a href="#" className="flex items-center shrink-0">
           <Logo size="md" />
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-6 2xl:gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-xs uppercase tracking-[0.2em] font-medium text-ivory-200/85 hover:text-gold-300 transition-colors duration-200 relative group py-1"
+              className="text-[11px] 2xl:text-xs uppercase tracking-[0.2em] font-medium text-ivory-200/85 hover:text-gold-300 transition-colors duration-200 relative group py-1"
             >
               {link.name}
               <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gradient-to-r from-gold-400 to-bronze-400 group-hover:w-full transition-all duration-300" />
@@ -75,35 +76,35 @@ export default function Navbar({ onOpenBooking, onSelectTreatment }) {
         </nav>
 
         {/* Action Buttons */}
-        <div className="hidden sm:flex items-center gap-3">
+        <div className="hidden sm:flex items-center gap-2.5 lg:gap-3 shrink-0">
           {/* Glowing Android App Demo Pill Button */}
           <a
             href="./app.html"
-            className="relative group overflow-hidden px-4 py-2 rounded-full bg-gradient-to-r from-gold-500/20 via-gold-400/30 to-bronze-500/20 border border-gold-400 text-gold-300 hover:text-white font-semibold text-xs tracking-wider uppercase shadow-[0_0_18px_rgba(212,175,55,0.45)] hover:shadow-[0_0_30px_rgba(212,175,55,0.7)] hover:bg-gold-500/30 transition-all duration-300 flex items-center gap-1.5"
+            className="relative group overflow-hidden px-3.5 lg:px-4 py-2 rounded-full border border-gold-400/60 bg-gradient-to-r from-gold-500/15 via-gold-400/25 to-bronze-500/15 hover:border-gold-300 hover:bg-gold-500/30 text-gold-200 hover:text-white font-semibold text-xs tracking-wider uppercase shadow-[0_0_20px_rgba(212,175,55,0.35)] hover:shadow-[0_0_30px_rgba(212,175,55,0.65)] transition-all duration-300 flex items-center gap-2 active:scale-95"
             title="Launch Interactive Android App Demo"
           >
-            <span className="w-2 h-2 rounded-full bg-gold-400 animate-ping inline-block" />
-            <Smartphone className="w-3.5 h-3.5 text-gold-400" />
-            <span>Android App Demo</span>
+            <span className="w-2 h-2 rounded-full bg-gold-400 animate-ping inline-block shrink-0" />
+            <Smartphone className="w-3.5 h-3.5 text-gold-400 group-hover:scale-110 transition-transform" />
+            <span className="whitespace-nowrap">Android App Demo</span>
           </a>
 
           <a
             href={CLINIC_INFO.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2.5 rounded-full border border-gold-500/25 bg-obsidian-800/80 text-gold-400 hover:text-white hover:border-gold-400 hover:bg-gold-500/20 transition-all duration-300"
+            className="w-9 h-9 rounded-full border border-gold-500/30 bg-obsidian-900/90 hover:border-gold-400 hover:bg-gold-500/20 text-gold-400 hover:text-white flex items-center justify-center transition-all duration-300 shadow-md shrink-0"
             title="Chat on WhatsApp"
           >
-            <MessageCircle className="w-4 h-4" />
+            <MessageCircle className="w-4 h-4 text-emerald-400" />
           </a>
 
           <button
             onClick={() => onOpenBooking(null)}
-            className="relative group overflow-hidden px-5 py-2.5 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-bronze-500 text-obsidian-950 font-semibold text-xs tracking-wider uppercase shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.55)] transition-all duration-300 active:scale-95 flex items-center gap-2"
+            className="relative group overflow-hidden px-4 lg:px-5 py-2 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-bronze-500 text-obsidian-950 font-bold text-xs tracking-wider uppercase shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:shadow-[0_0_35px_rgba(212,175,55,0.7)] hover:brightness-110 transition-all duration-300 active:scale-95 flex items-center gap-1.5 shrink-0"
           >
-            <span className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out" />
+            <span className="absolute inset-0 bg-white/25 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out" />
             <Calendar className="w-3.5 h-3.5 text-obsidian-950" />
-            <span>Book Consultation</span>
+            <span className="whitespace-nowrap">Book Consultation</span>
           </button>
         </div>
 
